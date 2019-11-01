@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Repasando con Waifus</title>
+    <link rel="stylesheet" href="css/apuntes_estilos.css" />      
+</head>
+<body>
+    <div id="container">
+        <div id="cabecera"> 
+            <img id="logo" src="imagenes/makipadoru.png">
+            Git <span id="tagline">Sistema de control de versiones</span>                
+        </div>
+        <div id="post">
+            <h1>Comandos</h1>
+            <p>-- help : Agregarselo a cualquier comando para información sobre el comando</p>
+            <p>git init : Empieza un repositorio(base de datos) donde se guardan datos</p>
+            <p>git add (nombre del archivo) : Arranca el archivo, git sabe que existe el archivo (se puede poner . para agregar todos)</p>
+            <p>git commit -m “(descripción)” : Envia los cambios del archivo</p>
+            <p>git status : Ver como está el status</p>
+            <p>git show : Muestra el historial de cambios</p>
+            <p>git log : Ver historia entera de un archivo</p>                
+            <p>git push : Envia tus archivos hacia un repositorio remoto</p>
+            <p>git config --global user.email "tu@email.com"</p>
+            <p>git config --global user.name "Tu Nombre"</p>
+            <p>git diff "commitA" "commitB" : Comparar dos versiones</p>
+            <p>git checkout nombre_branch/numero_commit : cambiarse a esa rama o commit</p>
+            <p>git diff : (Muestra los cambios untracked)</p>
+            <p>git rm --cached: Elimina los archivos del área de Staging y del próximo commit pero los mantiene en nuestro disco duro.</p>
+            <p>git rm --force: Elimina los archivos de Git y del disco duro. Git siempre guarda todo, por lo que podemos acceder al registro de la existencia de los archivos, de modo que podremos recuperarlos si es necesario (pero debemos usar comandos más avanzados).</p>
+            <p>git reset --soft: Borramos todo el historial y los registros de Git pero guardamos los cambios que tengamos en Staging, así podemos aplicar las últimas actualizaciones a un nuevo commit.</p>
+            <p>git reset --hard: Borra todo. Todo todito, absolutamente todo. Toda la información de los commits y del área de staging se borra del historial.</p>
+            <p>git reset HEAD: Este es el comando para sacar archivos del área de Staging. No para borrarlos ni nada de eso, solo para que los últimos cambios de estos archivos no se envíen al último commit, a menos que cambiemos de opinión y los incluyamos de nuevo en staging con git add, por supuesto.</p>
+            <p>git clone "url_del_servidor_remoto": Nos permite descargar los archivos de la última versión de la rama principal y todo el historial de cambios en la carpeta .git.</p>
+            <p>git push "lugar" "rama": Luego de hacer git add y git commit debemos ejecutar este comando para mandar los cambios al servidor remoto.</p>
+            <p>git fetch "lugar" "rama": Lo usamos para traer actualizaciones del servidor remoto y guardarlas en nuestro repositorio local (en caso de que hayan, por supuesto).</p>
+            <p>git merge "rama": También usamos el comando git fetch con servidores remotos. Lo necesitamos para combinar los últimos cambios del servidor remoto y nuestro directorio de trabajo.</p>
+            <p>git merge --abort : Cancelar un merge antes de hacer el commit</p>
+            <p>git pull "lugar" "rama": Básicamente, git fetch y git merge al mismo tiempo.</p>
+            <p>git branch "nombre_de_la_rama" : para crear</p>
+            <p>git checkout "nombre_de_la_rama: para trabajar en esa rama</p>
+            <p>git checkout -b "nombre_de_la_rama" : para crear y trabajar en esa rama</p>
+
+            <h1>Definiciones importantes</h1>
+            
+
+        </div>
+        <div id="footer" >
+             Nani Sore &lt;3
+        </div>
+    </div>     
+</body>
+</html>
