@@ -8,24 +8,36 @@
 </head>
 <style>
     *{
-        outline: 1px solid red;
+        /* outline: 1px solid red; */
     }
     body {
         margin:0px;
-        background-color: #ef23235c;
+        background-color: #2c2e3e;
     }
     .header {
-     /*   background-color: #ef23235c;*/
+        /* background-color: #34374c; */
+        background-color: #ee2b47;
         width:100%;
-        height: 100px;    
+        height: 60px;    
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .header__img {
-        width: 90px;
-        margin-top: 5px;
-        margin-left: 20px;
+    .header__img{
+       display: flex;
+       align-items: center;
+    }
+    .header__img--logo {
+        width: 45px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+    }
+    .header__img--letras
+     {
+      align-items: center;
+      color: #f6f6f6;
+      margin-left: 5px;
+      
     }
     .header__menu {
         margin-right: 10px;
@@ -33,11 +45,14 @@
     .header__menu ul{
         display: none;
         list-style: none;
-        padding: 0px;
+        padding: 0px 20px 0px 0px;
         position: absolute;
         width: 100px;
         text-align: right;
-        margin: 0px 0px 0px -16px;
+        margin: 0px 0px 0px 0px;
+        background-color: #ee2b47;
+        border-radius: 10%;
+
     }    
     .header__menu:hover ul, ul:hover{
         display: block;
@@ -60,20 +75,30 @@
     }
     .header__menu--profile img{
         margin-right: 8px;
-        width: 40px;
+        width: 50px;
         
     }
     .header__menu--profile p{
         margin: 0px;
         color: white;
     }
+    /* .footer {
+        background-color: #ee2b47;
+        width:100%;
+        height: 200px;    
+        position: relative;
+        margin-top: -200px;
+    }  */
 </style>
 <body>
     <header class="header">
-        <img class="header__img" src="imagenes/Maki icono.png" alt="Imagen de Maki">
+        <div class="header__img">
+            <img class="header__img--logo" src="imagenes/tomate-ico.png" alt="Tomate"> 
+            <span class="header__img--letras">El Rincon del Tomate</span>
+        </div>        
         <div class="header__menu">
             <div class="header__menu--profile">
-                <img src="imagenes/tomate-ico.png" alt="User">
+                <img src="imagenes/Maki icono.png" alt="User">
                 <p>Perfil</p>
             </div>
             <ul>
@@ -82,7 +107,8 @@
             </ul>
         </div>
     </header>
-    <footer>
+    <div></div>
+    <footer class="footer">
     </footer>
 </body>
 </html>
