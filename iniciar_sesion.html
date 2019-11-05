@@ -96,13 +96,12 @@
         justify-content: center;
         
     }
-    .login__social-media button{
-        background-color: transparent;
-        border: 1px solid white;
+    .login__social-media button{        
+        border: 0px ;
         border-radius: 10px;
         cursor: pointer;
         padding: 5px 40px;
-        font-size: 14px;   
+        font-size: 16px;   
         font-weight: bold;
         font-family: 'Muli', sans-serif;
         height:50px;        
@@ -116,6 +115,13 @@
         width: 16px;
         margin-right: 10px;
     }    
+    .login__social-media--google{
+        background-color: #DB4437;
+    }
+    .login__social-media--twitter{
+        background-color: #00acee;
+    }
+
     .login__register{
         font-size: 14px;        
     }
@@ -214,8 +220,8 @@
                 </div>            
             </form>
             <section class="login__social-media">                
-                <button><img src="imagenes/google-icon.png" alt="Google">Iniciar sesión con Google</button>
-                <button><img src="imagenes/twitter-icon.png" alt="Twitter">Iniciar sesión con Twitter</button>
+                <button class="login__social-media--google"><img src="imagenes/google-icon.png" alt="Google">Iniciar sesión con Google</button>
+                <button class="login__social-media--twitter"><img src="imagenes/twitter-icon.png" alt="Twitter">Iniciar sesión con Twitter</button>
                 <!-- <div><img src="imagenes/google-icon.png" alt="Google">Inicia sesión con Google</div>
                 <div><img src="imagenes/twitter-icon.png" alt="Twitter">Inicia sesión con Twitter</div>                 -->
             </section>
