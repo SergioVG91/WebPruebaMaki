@@ -66,35 +66,10 @@
         display:flex;
         flex-direction: column;
     }
-    .login__remember-me{
-        font-size: 14px;
+    
+    .login__register{         
         display:flex;
-        justify-content: space-between;
-        margin-top: 10px;
-    }
-    .login__remember-me a{
-        text-decoration: none;
-        color:white;
-    }
-    .login__remember-me a:hover{
-        text-decoration: underline;
-    }
-    .login__img-google{
-        width: 40px;
-        margin-right: 10px;
-    }
-    .login__img-twitter{
-        width: 40px;
-        margin-right: 10px;
-    }
-    .login__social-media div{
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-    .login__register{
-        font-size: 14px;        
+        justify-content: center;
     }
     .login__register a{
         font-size: 16px;        
@@ -163,23 +138,16 @@
 
     <section class="login">
         <section class="login__container">
-            <h2>Inicia sesión</h2>
+            <h2>Regístrate</h2>
             <form class="login__form">
+                <input class="input" type="text" placeholder="Nombre">
                 <input class="input" type="text" placeholder="Correo">
                 <input class="input" type="password" placeholder="Contraseña">
-                <button class="button">Iniciar sesión</button>
-                <div class="login__remember-me">
-                    <label for="">
-                        <input type="checkbox" name="" id="cbox1" value="checkbox">Recuérdame                        
-                    </label>
-                    <a href="/">Olvidé mi contraseña</a>
-                </div>            
+                <button class="button">Registrarme</button>
+                
             </form>
-            <section class="login__social-media">
-                <div><img class="login__img-google" src="imagenes/google-icon.png" alt="Google">Inicia sesión con Google</div>
-                <div><img class="login__img-twitter" src="imagenes/twitter-icon.png" alt="Twitter">Inicia sesión con Twitter</div>                
-            </section>
-            <p class="login__register">No tienes ninguna cuenta <a href="/">Regístrate</a></p>
+            
+            <p class="login__register"><a href="/">Iniciar sesión</a></p>
         </section>
     </section>
     <footer class="footer">
