@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+      
+    <script>
+       
+/* 
+        //Entendiendo como funciona JS asincrono, primero se ejecuta el main y ya despues la cola   
+        //setTimeout(function(){
+        //    console.log("a")
+        //}, 3000)
+        setTimeout(()=>console.log("a"),3000)
+        for(i=0;i<10000000000;i++){} */
+    
+
+/*       //Usando callback a un sitio externo, crossDomain para indicar que la solicitud se hara en otro dominio
+        const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"
+        var character = prompt("Ingrese id de personaje")
+        const character_selected = `${API_URL}${PEOPLE.replace(":id",character)}`
+        const opts = { crossDomain:true }
+        const onResponse = (people) => console.log(`Has seleccionado a ${people.name}`)
+        $.get(character_selected,opts,onResponse) */
+    
+/* 
+        //Usando callbacks, se observa que no llegan en orden sino que depende de la respuesta del servidor y como se resolvieron
+        const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }
+        const onResponse = (people) => console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                
+        function seleccionarPersonaje(id){
+            const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`
+            $.get(character_selected,opts,onResponse)
+        }
+        for(var i=1;i<15;i++){
+            seleccionarPersonaje(i);
+        } */
+
+
+/*         //Usando callbacks en orden, callbackhell
+        const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }        
+        function seleccionarPersonaje(id, callback){
+            const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`
+            $.get(character_selected,opts, function(people){
+                console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                
+                if(callback){
+                    callback()//Si nos envian un segundo parametro o funcion la ejecutamos, en este caso el callback
+                    //Pero siempre y cuando ya hayamos recibido la respuesta 
+                }
+            })           
+        }        
+        seleccionarPersonaje(1,function(){
+            seleccionarPersonaje(2,function(){
+                seleccionarPersonaje(3,function(){
+                    seleccionarPersonaje(4,function(){
+                        seleccionarPersonaje(5,function(){
+                            seleccionarPersonaje(6,function(){
+                                seleccionarPersonaje(7)
+                            })
+                        })  
+                    })
+                })
+            })
+        }) */
+
+
+
+
+    </script>
+</body>
+</html>

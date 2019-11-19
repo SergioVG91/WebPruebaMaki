@@ -71,11 +71,12 @@
     llenarBilletes(20,22);
     llenarBilletes(10,32);
 
-    function entregarDinero(){
-        var dinero = document.getElementById("dinero");
-        var dineroCopia = dineroTotal;
-        dineroSolicitado = parseInt(dinero.value);
-        if(dineroCopia > dineroSolicitado ){
+
+    function entregarDinero(){        
+        entregado =[];
+        var dinero = document.getElementById("dinero");        
+        dineroSolicitado = parseInt(dinero.value);        
+        if(dineroTotal >= dineroSolicitado ){
             if(dineroSolicitado%10==0){
                 for(var i of caja){
                     div = Math.floor(dineroSolicitado/i.valor);
@@ -84,16 +85,19 @@
                     }
                     else{
                         papeles = div;
-                    }
-                    i.cantidad = i.cantidad - papeles;                    
+                    }                    
                     entregado.push(new Billete(i.valor,papeles));
                     dineroSolicitado = dineroSolicitado - (i.valor*papeles);
                 }
                 if(dineroSolicitado==0){
                     alert("Transferencia completa");                  
-                    dineroTotal=dineroTotal-dineroSolicitado;
+                    dineroTotal = dineroTotal - parseInt(dinero.value);                    
+                    for(var i in caja)
+                    {
+                        caja[i].cantidad = caja[i].cantidad - entregado[i].cantidad;
+                    }   
                 }
-                else{
+                else{                    
                     alert("No hay suficiente billetes para dar esa cantidad");        
                 }
 

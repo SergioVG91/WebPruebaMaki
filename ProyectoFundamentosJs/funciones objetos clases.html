@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+      
+      
+    <script>
+        var sergio = {
+            nombre : "Sergio",
+            apellido : "Vazquez",
+            edad : 28,
+            peso: 60,
+            altura: 1.6,
+            librosLeidos : 10
+        }
+        var dario = {
+            nombre : "Dario",
+            apellido : "Quez",
+            edad : 25,
+            altura:1.82,
+            librosLeidos : 15
+        }
+        var juan = {
+            nombre : "Dario",
+            apellido : "Quez",
+            edad : 13,
+            altura: 1.70,
+            librosLeidos : 11
+        }
+        var jose = {
+            nombre: "Jose",
+            altura: 1.85,
+            librosLeidos : 6
+        }
+
+        function imprime(persona){
+            /* var  { nombre } = persona
+            var  { edad } = persona
+            console.log(`Mi nombre es ${nombre.toUpperCase()} y tengo ${edad} años`)    
+          */
+          console.log(persona);
+            var edads = persona;
+            edads = 20;
+            
+        }
+
+       // imprime(sergio.edad)
+       // imprime(dario.edad)
+       // console.log(sergio.edad);console.log(dario.edad);
+
+        const MAYORIA_DE_EDAD = 18
+/* 
+        function esMayorDeEdad(persona){
+            if(persona.edad >= MAYORIA_DE_EDAD)
+                return true;
+            else 
+                return false;    
+        } 
+        
+         const esMayorDeEdad = ({edad}) => edad >= MAYORIA_DE_EDAD
+
+        function permitirAccesso (persona){
+            if (esMayorDeEdad(persona)){
+                console.log("Acceso permitido");
+            }
+            if (!esMayorDeEdad(persona)){
+                console.log("Acceso denegado");
+            }
+        }
+        */
+
+     /*  const DIAS_DEL_ANO = 365
+       const VARIACION_PESO = .2
+       const aumentaDePeso = persona => persona.peso += VARIACION_PESO
+       const disminuyeDePeso = persona => persona.peso -= VARIACION_PESO
+       const comeMucho = () => Math.random() < .1
+       const haceEjercicio = () => Math.random() < .2
+       const esAlto = ({altura}) => altura >= 1.8
+       const META = sergio.peso - 3
+       console.log(`Al inicio de año ${sergio.nombre} pesa ${sergio.peso}kg `)
+      */    /*
+       for (i=0;i<DIAS_DEL_ANO;i++){
+        var j = Math.random()        
+        if(j<.25){
+            aumentaDePeso(sergio)
+        }
+        else if (j<.5){
+            disminuyeDePeso(sergio)
+        }
+       }
+       console.log(`Al final del año ${sergio.nombre} pesa ${sergio.peso.toFixed(1)}kg `)       
+ */     
+       /* var dias = 0;
+       while(sergio.peso > META){
+           dias++
+           if(comeMucho()){
+            aumentaDePeso(sergio)
+           }
+           if(haceEjercicio()){
+            disminuyeDePeso(sergio)
+           }
+       }
+       console.log(`${sergio.nombre} tardo ${dias} días para bajar a ${META}kg `) */
+
+  /*      var personas = []
+       personas = [sergio,dario,juan,jose]
+       var personasAltas = personas.filter(esAlto)
+
+       const pasarACms = persona => ({
+           ...persona,
+           altura: persona.altura*100
+       })
+       personasCm = personas.map(pasarACms)
+       
+       const reducer = (acum,{librosLeidos}) => librosLeidos + acum
+       var librosTotales = personas.reduce(reducer,0)
+       console.log(` Total de libros contados ${librosTotales} `) */
+
+       
+       /* function Persona(nombre,apellido,altura){
+           this.nombre = nombre
+           this.apellido = apellido
+           this.altura = altura
+       }
+
+       Persona.prototype.saluda = function(){
+            console.log("Hola")
+        }
+
+       Persona.prototype.controlAltura = function(){
+           if(this.altura>=1.80){
+                console.log(` Mi nombre es ${this.nombre} ${this.apellido} y soy alto`)
+           }
+           else 
+                console.log(` Mi nombre es ${this.nombre} ${this.apellido} y no soy alto`)
+       }
+
+
+       var sergio = new Persona("Sergio","Vazquez",1.60)
+       
+
+       function Desarrollador(nombre,apellido){
+        this.nombre = nombre
+        this.apellido = apellido
+       }
+
+        function hereda(padre,hijo){
+            var fn = function (){}
+            fn.prototype = padre.prototype
+            hijo.prototype = new fn
+            hijo.prototype.constructor = hijo.prototype            
+        }
+
+        hereda(Persona,Desarrollador)
+        
+       Desarrollador.prototype.saluda = function(){
+            console.log("Hi")
+        }
+
+       
+       
+        var jose = new Desarrollador("Jose","Perez",1.90) */
+
+/* 
+        class Persona {
+            constructor(nombre,apellido,altura){
+                this.nombre = nombre
+                this.apellido = apellido
+                this.altura = altura
+            }
+
+            saluda (fn){
+                //var nombre = this.nombre
+                //var apellido = this.apellido
+                var {nombre,apellido} = this
+                console.log(`Hola soy ${nombre} ${apellido}`)
+                if(fn){
+                    responderSaludo(nombre,apellido)
+                }
+            }
+
+            controlAltura (){
+                if(this.altura>=1.80)
+                    console.log(` Mi nombre es ${this.nombre} ${this.apellido} y soy alto`)                
+                else 
+                    console.log(` Mi nombre es ${this.nombre} ${this.apellido} y no soy alto`)
+            }                
+        }
+
+        class Desarrollador extends Persona {
+            constructor(nombre,apellido,altura){
+                super(nombre,apellido,altura)
+            }
+
+            saluda(fn){
+                var {nombre,apellido} = this
+                console.log(`Hola soy ${nombre} ${apellido} y soy desarrollador`)
+                if(fn){
+                    responderSaludo(nombre,apellido,true)
+                }
+            }
+        }
+
+        function responderSaludo(nombre,apellido,desarrollador){
+            console.log(`Buenas tardes ${nombre} ${apellido}`)
+            if(desarrollador){
+                console.log(`No sabía que eras un desarrollador`)
+            }
+        }
+
+        var sergio = new Persona("Sergio","Vazquez",1.60)
+        var jose = new Desarrollador("Jose","Perez",1.90)
+
+        sergio.saluda(responderSaludo)
+        jose.saluda(responderSaludo)
+ */
+
+ 
+
+
+
+    </script>
+</body>
+</html>
