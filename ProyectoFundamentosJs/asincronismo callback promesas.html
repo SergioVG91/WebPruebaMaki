@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+      
+    <script>
+       
+/* 
+        //Entendiendo como funciona JS asincrono, primero se ejecuta el main y ya despues la cola   
+        //setTimeout(function(){
+        //    console.log("a")
+        //}, 3000)
+        setTimeout(()=>console.log("a"),3000)
+        for(i=0;i<10000000000;i++){} */
+    
+
+/*       //Usando callback a un sitio externo, crossDomain para indicar que la solicitud se hara en otro dominio
+        const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"
+        var character = prompt("Ingrese id de personaje")
+        const character_selected = `${API_URL}${PEOPLE.replace(":id",character)}`
+        const opts = { crossDomain:true }
+        const onResponse = (people) => console.log(`Has seleccionado a ${people.name}`)
+        $.get(character_selected,opts,onResponse) */
+    
+/* 
+        //Usando callbacks, se observa que no llegan en orden sino que depende de la respuesta del servidor y como se resolvieron
+        const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }
+        const onResponse = (people) => console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                
+        function seleccionarPersonaje(id){
+            const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`
+            $.get(character_selected,opts,onResponse)
+        }
+        for(var i=1;i<15;i++){
+            seleccionarPersonaje(i);
+        } */
+
+
+/*         //Usando callbacks en orden, callbackhell
+        const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }        
+        function seleccionarPersonaje(id, callback){
+            const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`
+            $.get(character_selected,opts, function(people){
+                console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                
+                if(callback){
+                    callback()//Si nos envian un segundo parametro o funcion la ejecutamos, en este caso el callback
+                    //Pero siempre y cuando ya hayamos recibido la respuesta 
+                }
+            })           
+        }        
+        seleccionarPersonaje(1,function(){
+            seleccionarPersonaje(2,function(){
+                seleccionarPersonaje(3,function(){
+                    seleccionarPersonaje(4,function(){
+                        seleccionarPersonaje(5,function(){
+                            seleccionarPersonaje(6,function(){
+                                seleccionarPersonaje(7)
+                            })
+                        })  
+                    })
+                })
+            })
+        }) */
+
+       /* //Manejando errores
+       const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }        
+        function seleccionarPersonaje(id, callback){
+            const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`            
+            $.get(character_selected,opts, callback).fail(function(){
+                console.log(`Error de conexión, no se pudo obtener el personaje ${id}`)                                    
+            })         
+            
+        }        
+        seleccionarPersonaje(1,function(people){
+            console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                
+            seleccionarPersonaje(2,function(people){
+                console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                
+                seleccionarPersonaje(3,function(people){
+                    console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                
+                    seleccionarPersonaje(4,function(people){
+                        console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                
+                        seleccionarPersonaje(5,function(people){
+                            console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                
+                            seleccionarPersonaje(6,function(people){
+                                console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                
+                                seleccionarPersonaje(7,function(people){
+                                    console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                
+                                })                                
+                            })
+                        })  
+                    })
+                })
+            })
+        })  */
+        
+/*         //Reescribiendola pero sin funcione seleccionarPersonaje para entenderla mejor    
+        const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }        
+        var character_selected = "";        
+        
+        character_selected = `${API_URL}${PEOPLE.replace(":id",1)}`
+        $.get(character_selected,opts,function (people){
+            console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                        
+            character_selected = `${API_URL}${PEOPLE.replace(":id",2)}`
+            $.get(character_selected,opts,function (people){
+                console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                        
+                character_selected = `${API_URL}${PEOPLE.replace(":id",3)}`
+                $.get(character_selected,opts,function (people){
+                    console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                        
+                    character_selected = `${API_URL}${PEOPLE.replace(":id",4)}`
+                    $.get(character_selected,opts,function (people){
+                        console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                                                
+                    }).fail(function(){
+                        console.log(`Error de conexión, no se pudo obtener el personaje 4`)                                    
+                    })
+                }).fail(function(){
+                    console.log(`Error de conexión, no se pudo obtener el personaje 3`)                                    
+                })
+            }).fail(function(){
+                console.log(`Error de conexión, no se pudo obtener el personaje 2`)                                    
+            })
+        }).fail(function(){
+            console.log(`Error de conexión, no se pudo obtener el personaje 1`)                                    
+        })*/        
+        
+     /* //Promesas
+        const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }        
+        function seleccionarPersonaje(id){
+            return new Promise( (resolve,reject) => {
+                const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`
+                $
+                    .get(character_selected,opts,function(data){
+                        resolve(data)
+                    })                                
+                    .fail(function(){
+                        reject(id);
+                    })                
+            })                                                     
+        }        
+        function onError(id){
+            console.log(`Error de conexión, no se pudo obtener el personaje ${id}`)                                    
+        }
+        seleccionarPersonaje(1)
+            .then(function(people){
+                console.log(`Has seleccionado a ${people.name} con el id:${people.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                       
+            })                 
+            .catch(onError)  */
+            
+ /*     //Promesas encadenadas
+     const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }        
+        function seleccionarPersonaje(id){
+            return new Promise( (resolve,reject) => {
+                const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`
+                $
+                    .get(character_selected,opts,function(data){
+                        resolve(data)
+                    })                                
+                    .fail(function(){
+                        reject(id);
+                    })                
+            })                                                     
+        }        
+        function onError(id){
+            console.log(`Error de conexión, no se pudo obtener el personaje ${id}`)                                    
+        }
+        seleccionarPersonaje(1)
+            .then(function(people1){
+                console.log(`Has seleccionado a ${people1.name} con el id:${people1.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                       
+                return seleccionarPersonaje(2) 
+            })                 
+            .then(function(people2){
+                console.log(`Has seleccionado a ${people2.name} con el id:${people2.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                       
+                return seleccionarPersonaje(3) 
+            })                 
+            .then(function(people3){
+                console.log(`Has seleccionado a ${people3.name} con el id:${people3.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                       
+                return seleccionarPersonaje(4) 
+            })                 
+            .then(function(people4){
+                console.log(`Has seleccionado a ${people4.name} con el id:${people4.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                       
+                return seleccionarPersonaje(5) 
+            })                 
+            .then(function(people5){
+                console.log(`Has seleccionado a ${people5.name} con el id:${people5.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                       
+                return seleccionarPersonaje(6) 
+            })                 
+            .then(function(people6){
+                console.log(`Has seleccionado a ${people6.name} con el id:${people6.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                       
+                return seleccionarPersonaje(7) 
+            })                 
+            .then(function(people7){
+                console.log(`Has seleccionado a ${people7.name} con el id:${people7.url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                                       
+            })                             
+            .catch(onError) */             
+ 
+
+   /* //Promesas arreglo
+   const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }        
+        function seleccionarPersonaje(id){
+            return new Promise( (resolve,reject) => {
+                const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`
+                $
+                    .get(character_selected,opts,function(data){
+                        resolve(data)
+                    })                                
+                    .fail(function(){
+                        reject(id);
+                    })                
+            })                                                     
+        }        
+        function onError(id){
+            console.log(`Error de conexión, no se pudo obtener el personaje ${id}`)                                    
+        }
+
+        var ids = [1,2,3,4,5,6,7]
+        var promesas = ids.map(id => seleccionarPersonaje(id))
+        console.log(promesas)
+        Promise
+            .all(promesas) //Ya que todas esten resueltas
+            .then(people =>{
+                for(i=0;i<people.length;i++){
+                    console.log(`Has seleccionado a ${people[i].name} con el id:${people[i].url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                                       
+                }                
+            })                 
+            .catch(onError)*/
+
+
+    /* //Await Async combinado con promises
+    const API_URL = "https://swapi.co/api/"
+        const PEOPLE = "people/:id"            
+        const opts = { crossDomain:true }        
+
+        function seleccionarPersonaje(id){
+            return new Promise( (resolve,reject) => {
+                const character_selected = `${API_URL}${PEOPLE.replace(":id",id)}`
+                $
+                    .get(character_selected,opts,function(data){
+                        resolve(data)
+                    })                                
+                    .fail(function(){
+                        reject(id);
+                    })                
+            })                                                     
+        }        
+        function onError(id){
+            console.log(`Error de conexión, no se pudo obtener el personaje ${id}`)                                    
+        }
+
+        async function obtenerPersonajes(){
+            var ids = [1,2,3,4,5,6,7]
+            var promesas = ids.map(id => seleccionarPersonaje(id))
+            try{
+                var people = await Promise.all(promesas)
+                for(i=0;i<people.length;i++){
+                    console.log(`Has seleccionado a ${people[i].name} con el id:${people[i].url.replace(`${API_URL}people/`," ").slice(0,-1)}`)                                                       
+                }
+            }
+            catch(id){
+                onError(id)
+            }
+        }
+
+        obtenerPersonajes() */
+
+
+       
+
+       
+
+    </script>
+</body>
+</html>
