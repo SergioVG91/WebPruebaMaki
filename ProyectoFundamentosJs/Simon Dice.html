@@ -105,8 +105,7 @@
           this.NIVEL_MAXIMO = 10
           this.inicializar()          
           this.generarSecuencia()
-          this.iniciarNivel()
-          this.activarListener()
+          setTimeout(this.iniciarNivel,1500)
         }
 
         manejarBtnEmpezar(){
@@ -147,65 +146,130 @@
           }            
         }
 
-        iluminarColor(color){
-          this.colores[color].classList.add('light')
-          setTimeout(()=>this.apagarColor(color),500)
-        }
-
         apagarColor(color){
           this.colores[color].classList.remove('light')
         }
 
-        iluminarSecuencia(){
-          for(let i=0; i<this.nivel;i++){            
-            let color = this.transformarNumeroAColor(this.secuencia[i])            
-            //this.iluminarColor(color)
-            setTimeout(()=>this.iluminarColor(color),1000*i)
-            
+        iluminarColor(color){                                         
+          this.colores[color].classList.add('light')          
+          setTimeout(()=>this.apagarColor(color),400)
+        } 
+
+        delay(ms) {
+          return new Promise(function (resolve) { return setTimeout(resolve, ms); });
+        };
+
+        iluminarSecuencia = async() => {                    
+          for(let i=0;i<this.nivel;i++){
+            let color = this.transformarNumeroAColor(this.secuencia[i])                                    
+            this.iluminarColor(color)
+            await this.delay(800)                        
           }
+          /* 
+            let contador = 0;
+            for(const i of this.secuencia){                                    
+            let color = this.transformarNumeroAColor(i)                                    
+            this.iluminarColor(color)
+            await this.delay(800)                        
+            contador++
+            if(!(contador<this.nivel)) break;
+          } */          
+          this.activarListener()
         }
 
         iniciarNivel(){          
-          this.subnivel = 0
-          this.iluminarSecuencia()
+          this.subnivel = 0          
+          this.iluminarSecuencia()                              
         }
 
         activarListener(){
+          console.log("activar list")
           this.colores.celeste.addEventListener("click",this.clickColor)
           this.colores.violeta.addEventListener("click",this.clickColor)
           this.colores.naranja.addEventListener("click",this.clickColor)
           this.colores.verde.addEventListener("click",this.clickColor)
         }
+        
+        desactivarListener(){
+          console.log("desactivar list")
+          this.colores.celeste.removeEventListener("click",this.clickColor)
+          this.colores.violeta.removeEventListener("click",this.clickColor)
+          this.colores.naranja.removeEventListener("click",this.clickColor)
+          this.colores.verde.removeEventListener("click",this.clickColor)
+        }
 
         clickColor(evento){ 
-          const color = evento.target.dataset.color          
+          const color = evento.target.dataset.color                    
           const numColor = this.transformarColorANumero(color)
+          this.iluminarColor(color)
           if(numColor === this.secuencia[this.subnivel]){
             this.subnivel++
-            if(this.subnivel  this.nivel)
+            if(this.subnivel === this.nivel){
+              this.nivel++;
+              this.desactivarListener()            
+              if(this.subnivel===this.NIVEL_MAXIMO+1){
+                this.ganoJuego()
+              }
+              else{                
+                console.log("Siguiente nivel")
+                setTimeout(this.iniciarNivel,1500)
+              }
+                
+            }
           }
           else{
-            console.log("Perdiste")
+            this.perdioJuego()
           }
 
 
         }
 
-        comprobarSecuencia
+        ganoJuego(){
+          Swal.fire(
+               'Felicidades',
+                'Ganaste el juego',
+                'sucesss'
+          ).then( ()=>{
+            this.inicializar()
+          }
 
+          )
+          
+
+        }
+
+        perdioJuego(){
+          Swal.fire(
+               'Perdiste',
+                'Lo siento, has perdido',
+                'error'
+          
+          )
+          .then(() => {
+            this.inicializar()
+          })
+                              
+        }
+        
         inicializar(){
           this.nivel = 1                              
           this.colores = {
             celeste,violeta,naranja,verde
           }
+          this.desactivarListener()          
           this.manejarBtnEmpezar()
           this.clickColor = this.clickColor.bind(this)
+          this.iniciarNivel = this.iniciarNivel.bind(this)
+          this.activarListener = this.activarListener.bind(this)
+          
         }
       }
 
       function empezarJuego(){
         window.jug = new Juego()
       }
+
+
     </script>
   
 
